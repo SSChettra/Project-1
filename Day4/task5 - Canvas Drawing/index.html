@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Canvas Drawing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Canvas Drawing</h1>
+    <canvas id="myCanvas" width="300" height="300" style="border:1px solid #000000;"></canvas>
+
+    <script>
+        // Get the canvas element and the 2D context
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        // Draw a blue rectangle
+        ctx.fillStyle = "blue";  // Set the fill color
+        ctx.fillRect(50, 50, 150, 100);  // Draw the rectangle at (50, 50) with 150x100 size
+
+        // Draw a circle
+        ctx.beginPath();  // Start a new path
+        ctx.arc(150, 150, 50, 0, 2 * Math.PI);  // Circle at (150, 150) with a radius of 50
+        ctx.stroke();  // Draw the circle outline
+    </script>
+</body>
+</html>
