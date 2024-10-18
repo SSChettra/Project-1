@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouncing Ball Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        canvas {
+            border: 2px solid #000;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="gameCanvas" width="800" height="600"></canvas>
+
+<script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // Ball properties
+    let ball = {
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        radius: 20,
+        dx: 4, // Change in x (speed)
+        dy: 4, // Change in y (speed)
+        color: 'blue'
+    };
+
+    function drawBall() {
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+        ctx.fillStyle = ball.color;
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    function updateBall() {
+        // Update the ball's position
+        ball.x += ball.dx;
+        ball.y += ball.dy;
+
+        // Check for wall collisions
+        if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
+            ball.dx = -ball.dx; // Reverse direction
+            changeColor(); // Change color on collision
+        }
+        if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+            ball.dy = -ball.dy; // Reverse direction
+            changeColor(); // Change color on collision
+        }
+    }
+
+    function changeColor() {
+        // Generate a random color
+        ball.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+        drawBall(); // Draw the ball
+        updateBall(); // Update the ball's position
+        requestAnimationFrame(draw); // Call draw again for animation
+    }
+
+    // Start the game
+    draw();
+</script>
+
+</body>
+</html>

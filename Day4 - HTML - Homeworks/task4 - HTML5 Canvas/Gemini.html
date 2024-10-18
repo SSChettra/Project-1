@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Drawing App</title>
+</head>
+<body>
+<canvas id="myCanvas" width="500" height="300"></canvas>
+
+<script>
+var canvas = document.getElementById('myCanvas');
+var context = canvas.getContext('2d');
+
+var isDrawing = false;
+var lastX = 0;
+var lastY = 0;
+
+canvas.addEventListener('mousedown', function(event) {
+  isDrawing = true;
+  lastX = event.clientX - canvas.offsetLeft;
+  lastY = event.clientY - canvas.offsetTop;
+});
+
+canvas.addEventListener('mousemove', function(event) {
+  if (isDrawing) {
+    var currentX = event.clientX - canvas.offsetLeft;
+    var currentY = event.clientY - canvas.offsetTop;
+
+    context.beginPath();
+    context.moveTo(lastX, lastY);
+    context.lineTo(currentX, currentY);
+    context.stroke();
+
+    lastX = currentX;
+    lastY = currentY;
+  }
+});
+
+canvas.addEventListener('mouseup', function() {
+  isDrawing = false;
+});
+</script>
+
+</body>
+</html>

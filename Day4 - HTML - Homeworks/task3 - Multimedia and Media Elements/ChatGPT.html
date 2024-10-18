@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Media Controls</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        video, audio {
+            width: 100%;
+            max-width: 600px; /* Adjust max width as needed */
+            margin: 10px 0;
+        }
+        .controls {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input[type="range"] {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>My Favorite Hobby: Painting</h1>
+
+<section>
+    <h2>Watch This Painting Tutorial</h2>
+    <video id="myVideo" width="560" height="315" controls>
+        <source src="sample-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button onclick="playVideo()">Play</button>
+        <button onclick="pauseVideo()">Pause</button>
+        <label for="volume">Volume:</label>
+        <input type="range" id="volume" min="0" max="1" step="0.1" value="1" onchange="setVolume(this.value)">
+    </div>
+
+    <h2>Listen to My Favorite Song</h2>
+    <audio id="myAudio" controls>
+        <source src="your-audio-file.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="controls">
+        <button onclick="playAudio()">Play</button>
+        <button onclick="pauseAudio()">Pause</button>
+        <label for="audio-volume">Volume:</label>
+        <input type="range" id="audio-volume" min="0" max="1" step="0.1" value="1" onchange="setAudioVolume(this.value)">
+    </div>
+</section>
+
+<script>
+    // Video Controls
+    var video = document.getElementById("myVideo");
+
+    function playVideo() {
+        video.play();
+    }
+
+    function pauseVideo() {
+        video.pause();
+    }
+
+    function setVolume(value) {
+        video.volume = value;
+    }
+
+    // Audio Controls
+    var audio = document.getElementById("myAudio");
+
+    function playAudio() {
+        audio.play();
+    }
+
+    function pauseAudio() {
+        audio.pause();
+    }
+
+    function setAudioVolume(value) {
+        audio.volume = value;
+    }
+</script>
+
+</body>
+</html>
